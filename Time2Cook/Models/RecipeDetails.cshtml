@@ -1,0 +1,66 @@
+﻿@page
+@model Time2Cook.RecipeDetailsModel
+@{
+    ViewData["Title"] = "Recipe Details";
+}
+
+@if (Model.Recipe != null)
+{
+    <section class="details-page">
+
+        <a asp-page="/RecipeResults" class="back-link">
+            ← Back to Results
+        </a>
+
+        <div class="details-card">
+
+            <img src="@Model.Recipe.Image" alt="@Model.Recipe.Name" />
+
+            <div class="details-content">
+
+                <h1>@Model.Recipe.Name</h1>
+
+                <div class="details-stats">
+                    <span>💰 @Model.Recipe.Cost</span>
+                    <span>🔥 @Model.Recipe.Calories Calories</span>
+                    <span>⏱ @Model.Recipe.Time</span>
+                </div>
+
+                <h2>Diet Type</h2>
+                <p>@Model.Recipe.DietType</p>
+
+                <h2>Protein</h2>
+                <p>@Model.Recipe.Protein</p>
+
+                <h2>Ingredients</h2>
+
+                <ul>
+                    @foreach (var ingredient in Model.Recipe.Ingredients.Split(' '))
+                    {
+                        <li>@ingredient</li>
+                    }
+                </ul>
+
+                <h2>Allergens</h2>
+                <p>@Model.Recipe.Allergens</p>
+
+                <h2>Instructions</h2>
+
+                <ol>
+                    <li>Prepare all ingredients.</li>
+                    <li>Cook protein if required.</li>
+                    <li>Combine ingredients together.</li>
+                    <li>Season to taste.</li>
+                    <li>Serve and enjoy.</li>
+                </ol>
+
+            </div>
+
+        </div>
+
+    </section>
+}
+else
+{
+    <h2>Recipe not found.</h2>
+}

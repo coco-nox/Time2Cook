@@ -1,0 +1,56 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Time2Cook";
+}
+
+<section class="home-hero">
+    <div class="hero-left">
+        <h1>
+            Cook smart.<br />
+            <span class="pink-text">Save money.</span><br />
+            <span class="green-text">Eat better.</span>
+        </h1>
+
+        <p>
+            Turn your leftovers and ingredients into meals that fit your budget,
+            diet and lifestyle.
+        </p>
+
+        <a class="main-btn" asp-page="/SearchMeals">Get Started</a>
+    </div>
+
+    <div class="hero-right">
+        <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c" alt="Healthy food bowl" />
+    </div>
+</section>
+
+<section class="ingredient-section">
+    <h2>What ingredients do you have?</h2>
+
+    <div class="option-grid">
+        <div class="option-card">
+            <div class="circle-icon green-bg">📷</div>
+            <h3>Take a Photo of Leftovers</h3>
+            <p>Snap a picture of your ingredients or leftovers.</p>
+        </div>
+
+        <div class="option-card">
+            <div class="circle-icon pink-bg">✏️</div>
+            <h3>Enter Ingredients Manually</h3>
+            <p>Type in the ingredients you already have.</p>
+        </div>
+    </div>
+
+    <h2>Tell us your preferences</h2>
+
+    <div class="preference-grid">
+        <div class="pref-card">💰 Budget<br /><strong>$20 or less</strong></div>
+        <div class="pref-card">👥 Servings<br /><strong>2 People</strong></div>
+        <div class="pref-card">🥗 Dietary<br /><strong>Vegetarian</strong></div>
+        <div class="pref-card">⚠️ Allergies<br /><strong>None</strong></div>
+        <div class="pref-card">⏱ Cooking Time<br /><strong>Under 30 mins</strong></div>
+    </div>
+
+    <a class="generate-btn" asp-page="/SearchMeals">Generate Meals</a>
+</section>
