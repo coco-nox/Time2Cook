@@ -4,53 +4,86 @@
     ViewData["Title"] = "Time2Cook";
 }
 
-<section class="home-hero">
-    <div class="hero-left">
+<section class="new-home">
+
+    <div class="home-left">
+        <p class="small-title">Time2Cook</p>
+
         <h1>
-            Cook smart.<br />
-            <span class="pink-text">Save money.</span><br />
-            <span class="green-text">Eat better.</span>
+            Take the Stress<br />
+            out of meals.<br />
+            <span>Eat Better.</span>
         </h1>
 
-        <p>
-            Turn your leftovers and ingredients into meals that fit your budget,
-            diet and lifestyle.
+        <p class="home-text">
+            Turn leftovers into affordable meals that match your budget, time and preferences.
         </p>
 
-        <a class="main-btn" asp-page="/SearchMeals">Get Started</a>
+        <a asp-page="/SearchMeals" class="home-btn">Get Started</a>
     </div>
 
-    <div class="hero-right">
-        <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c" alt="Healthy food bowl" />
+    <div class="home-right">
+        <img src="/images/Spiced chicken rice bowl.jpg" alt="Time2Cook meal preview" />
     </div>
+
 </section>
 
-<section class="ingredient-section">
-    <h2>What ingredients do you have?</h2>
+<section class="start-section">
 
-    <div class="option-grid">
-        <div class="option-card">
-            <div class="circle-icon green-bg">📷</div>
-            <h3>Take a Photo of Leftovers</h3>
-            <p>Snap a picture of your ingredients or leftovers.</p>
-        </div>
+    <h2>How would you like to start?</h2>
 
-        <div class="option-card">
-            <div class="circle-icon pink-bg">✏️</div>
-            <h3>Enter Ingredients Manually</h3>
-            <p>Type in the ingredients you already have.</p>
-        </div>
+    <div class="start-grid">
+        <a asp-page="/SearchMeals" class="start-card">
+            <div>📷</div>
+            <h3>Upload</h3>
+            <p>Upload a photo of leftovers.</p>
+        </a>
+
+        <a asp-page="/SearchMeals" class="start-card">
+            <div>✏️</div>
+            <h3>Enter</h3>
+            <p>Type your ingredients manually.</p>
+        </a>
+
+        <a asp-page="/SearchMeals" class="start-card">
+            <div>💰</div>
+            <h3>Budget</h3>
+            <p>Choose how much you want to spend.</p>
+        </a>
+
+        <a asp-page="/SearchMeals" class="start-card">
+            <div>⚙️</div>
+            <h3>Preferences</h3>
+            <p>Select diet, allergies and calories.</p>
+        </a>
     </div>
 
-    <h2>Tell us your preferences</h2>
+</section>
 
-    <div class="preference-grid">
-        <div class="pref-card">💰 Budget<br /><strong>$20 or less</strong></div>
-        <div class="pref-card">👥 Servings<br /><strong>2 People</strong></div>
-        <div class="pref-card">🥗 Dietary<br /><strong>Vegetarian</strong></div>
-        <div class="pref-card">⚠️ Allergies<br /><strong>None</strong></div>
-        <div class="pref-card">⏱ Cooking Time<br /><strong>Under 30 mins</strong></div>
+<section class="popular-section">
+
+    <h2>Popular Recipes</h2>
+
+    <div class="popular-grid">
+
+        <div class="popular-card">
+            <img src="/images/Spiced chicken rice bowl.jpg" />
+            <h3>Chicken Rice Bowl</h3>
+            <p>$4.50 • 20 mins</p>
+        </div>
+
+        <div class="popular-card">
+            <img src="/images/sesame-crusted-tuna-rice-bowls.jpg" />
+            <h3>Tuna Rice Bowl</h3>
+            <p>$3.50 • 10 mins</p>
+        </div>
+
+        <div class="popular-card">
+            <img src="/images/Vietnamese-Caramelized-Minced-Beef-Rice-Bowls.jpg" />
+            <h3>Beef Rice Bowl</h3>
+            <p>$5.20 • 25 mins</p>
+        </div>
+
     </div>
 
-    <a class="generate-btn" asp-page="/SearchMeals">Generate Meals</a>
 </section>

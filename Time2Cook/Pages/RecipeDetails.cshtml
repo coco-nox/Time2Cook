@@ -35,7 +35,7 @@
                 <h2>Ingredients</h2>
 
                 <ul>
-                    @foreach (var ingredient in Model.Recipe.Ingredients.Split(' '))
+                    @foreach (var ingredient in Model.Recipe.IngredientsList)
                     {
                         <li>@ingredient</li>
                     }
@@ -47,11 +47,10 @@
                 <h2>Instructions</h2>
 
                 <ol>
-                    <li>Prepare all ingredients.</li>
-                    <li>Cook protein if required.</li>
-                    <li>Combine ingredients together.</li>
-                    <li>Season to taste.</li>
-                    <li>Serve and enjoy.</li>
+                    @foreach (var step in Model.Recipe.Instructions)
+                    {
+                        <li>@step</li>
+                    }
                 </ol>
 
             </div>

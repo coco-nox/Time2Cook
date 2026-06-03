@@ -6,6 +6,7 @@ namespace Time2Cook
     public class RecipeResultsModel : PageModel
     {
         public string Ingredients { get; set; } = "";
+
         public List<Recipe> Recipes { get; set; } = new();
 
         public void OnGet(
@@ -13,8 +14,8 @@ namespace Time2Cook
             int maxBudget = 20,
             int maxTime = 60,
             string calorieGoal = "none",
-            string[] dietary = null,
-            string[] allergies = null)
+            string[]? dietary = null,
+            string[]? allergies = null)
         {
             Ingredients = ingredients ?? "";
 

@@ -1,4 +1,6 @@
-﻿<div class="recipe-grid">
+﻿@page
+@model Time2Cook.RecipeResultsModel
+<div class="recipe-grid">
     @foreach (var recipe in Model.Recipes)
     {
         <div class="recipe-card">
@@ -14,10 +16,9 @@
                     <span>⏱ @recipe.Time</span>
                 </div>
 
-                <a asp-page="/RecipeDetails"
-                   asp-route-name="@recipe.Name"
-                   class="recipe-btn">
-                    View Recipe
+                <a href="/RecipeDetails?name=@recipe.Name" class="recipe-btn">
+                      View Recipe
+                   
                 </a>
             </div>
 

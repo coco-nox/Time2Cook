@@ -1,4 +1,6 @@
-﻿namespace Time2Cook.Models
+﻿using System.Collections.Generic;
+
+namespace Time2Cook.Models
 {
     public class Recipe
     {
@@ -7,6 +9,10 @@
         public string Protein { get; set; } = "";
 
         public string Ingredients { get; set; } = "";
+
+        public List<string> IngredientsList { get; set; } = new();
+
+        public List<string> Instructions { get; set; } = new();
 
         public string DietType { get; set; } = "";
 
