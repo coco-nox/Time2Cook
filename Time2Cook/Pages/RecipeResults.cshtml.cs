@@ -6,7 +6,7 @@ namespace Time2Cook
     public class RecipeResultsModel : PageModel
     {
         public string Ingredients { get; set; } = "";
-
+        public string SearchQueryString { get; set; } = "";
         public List<Recipe> Recipes { get; set; } = new();
 
         public void OnGet(
@@ -18,19 +18,21 @@ namespace Time2Cook
             string[]? allergies = null)
         {
             Ingredients = ingredients ?? "";
+            SearchQueryString = Request.QueryString.Value ?? "";
 
             var recipes = RecipeData.GetRecipes();
 
             if (!string.IsNullOrWhiteSpace(Ingredients))
             {
-                var enteredIngredients = Ingredients
+                var entered = Ingredients
                     .ToLower()
-                    .Split(',', ' ')
-                    .Where(i => !string.IsNullOrWhiteSpace(i))
+                    .Split(new[] { ',', ' ', '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries)
+                    .Select(i => i.Trim())
+                    .Where(i => i.Length > 1)
                     .ToList();
 
                 recipes = recipes
-                    .Where(r => enteredIngredients.Any(i =>
+                    .Where(r => entered.Any(i =>
                         r.Ingredients.ToLower().Contains(i) ||
                         r.Protein.ToLower().Contains(i)))
                     .ToList();
@@ -42,17 +44,11 @@ namespace Time2Cook
                 .ToList();
 
             if (calorieGoal == "weightLoss")
-            {
                 recipes = recipes.Where(r => r.Calories <= 450).ToList();
-            }
             else if (calorieGoal == "maintenance")
-            {
                 recipes = recipes.Where(r => r.Calories <= 650).ToList();
-            }
             else if (calorieGoal == "muscleGain")
-            {
                 recipes = recipes.Where(r => r.Calories >= 500).ToList();
-            }
 
             if (dietary != null && dietary.Length > 0)
             {

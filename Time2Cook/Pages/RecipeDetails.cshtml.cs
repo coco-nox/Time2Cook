@@ -11,20 +11,28 @@ namespace Time2Cook
         public bool IsSaved { get; set; }
         public bool JustSaved { get; set; }
         public bool JustUnsaved { get; set; }
+        public string BackUrl { get; set; } = "/SearchMeals";
 
-        public void OnGet(string name, bool saved = false, bool unsaved = false)
+        public void OnGet(string name, string? from = null, bool saved = false, bool unsaved = false)
         {
             Recipe = RecipeData.GetRecipes().FirstOrDefault(r => r.Name == name);
             if (Recipe != null)
                 IsSaved = GetSaved().Contains(Recipe.Name);
             JustSaved = saved;
             JustUnsaved = unsaved;
+
+            if (!string.IsNullOrEmpty(from))
+                BackUrl = "/RecipeResults" + Uri.UnescapeDataString(from);
         }
 
-        public IActionResult OnPostSave(string name)
+        public IActionResult OnPostSave(string name, string? from = null)
         {
             if (User.Identity?.IsAuthenticated != true)
-                return RedirectToPage("/Login", new { returnUrl = $"/RecipeDetails?name={Uri.EscapeDataString(name)}" });
+            {
+                var returnUrl = $"/RecipeDetails?name={Uri.EscapeDataString(name)}" +
+                                (from != null ? $"&from={Uri.EscapeDataString(from)}" : "");
+                return RedirectToPage("/Login", new { returnUrl });
+            }
 
             var saved = GetSaved();
             bool nowSaved;
@@ -40,7 +48,13 @@ namespace Time2Cook
             }
             SetSaved(saved);
 
-            return RedirectToPage(new { name, saved = nowSaved ? "true" : null, unsaved = nowSaved ? null : "true" });
+            return RedirectToPage(new
+            {
+                name,
+                from,
+                saved = nowSaved ? "true" : null,
+                unsaved = nowSaved ? null : "true"
+            });
         }
 
         private List<string> GetSaved()

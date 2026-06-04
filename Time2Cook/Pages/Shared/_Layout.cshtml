@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Time2Cook</title>
+    <title>@ViewData["Title"] - Pantry Pal</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -16,7 +16,7 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm">
             <div class="nav-container">
-                <a class="navbar-brand" asp-page="/Index">🍳 Time2Cook</a>
+                <a class="navbar-brand" asp-page="/Index">🥘 Pantry Pal</a>
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target=".navbar-collapse"
@@ -43,8 +43,11 @@
                     <ul class="navbar-nav nav-auth">
                         @if (User.Identity?.IsAuthenticated == true)
                         {
-                            <li class="nav-item nav-user">
-                                <span class="nav-username">👤 @User.Identity.Name</span>
+                            <li class="nav-item">
+                                <a class="nav-link nav-profile-link @(ViewContext.RouteData.Values["page"]?.ToString() == "/Profile" ? "active-link" : "")" asp-page="/Profile">
+                                    <span class="nav-avatar">@User.Identity.Name![0].ToString().ToUpper()</span>
+                                    My Profile
+                                </a>
                             </li>
                             <li class="nav-item">
                                 <form method="post" asp-page="/Logout" style="display:inline;">
@@ -73,8 +76,8 @@
 
     <footer class="site-footer">
         <div class="footer-inner">
-            <span class="footer-brand">🍳 Time2Cook</span>
-            <span>&copy; 2026 Time2Cook &mdash; Eat better, spend less.</span>
+            <span class="footer-brand">🥘 Pantry Pal</span>
+            <span>&copy; 2026 Pantry Pal &mdash; Eat better, spend less.</span>
             <a asp-page="/Privacy">Privacy Policy</a>
         </div>
     </footer>

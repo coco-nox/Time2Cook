@@ -1,4 +1,4 @@
-﻿@page
+@page
 @model Time2Cook.SearchMealsModel
 @{
     ViewData["Title"] = "Search Meals";
@@ -7,42 +7,27 @@
 <section class="search-page">
 
     <div class="search-header">
-        <h1>Find meals from what you already have</h1>
-        <p>Upload a photo or type your ingredients, then choose your budget and preferences.</p>
+        <h1>Find meals from what you have</h1>
+        <p>Enter your ingredients and set your preferences to get personalised meal suggestions.</p>
     </div>
 
     <form method="get" asp-page="/RecipeResults" class="search-card">
 
-        <div class="search-grid">
-
-            <div class="upload-box">
-                <div class="upload-icon">📷</div>
-                <h3>Take a Photo of Leftovers</h3>
-                <p>Upload a photo of ingredients you already have.</p>
-
-                <input type="file" class="form-control mt-3" />
-            </div>
-
-            <div class="manual-box">
-                <h3>Enter Ingredients Manually</h3>
-
-                <label>Ingredients</label>
-
-                <textarea name="ingredients"
-                          class="form-control"
-                          rows="5"
-                          placeholder="Example: chicken, rice, tomato, cheese"></textarea>
-            </div>
-
+        <div class="ingredients-box">
+            <h3>Enter Ingredients</h3>
+            <p>Type what you have on hand, separated by commas.</p>
+            <textarea name="ingredients"
+                      class="form-control"
+                      rows="4"
+                      placeholder="e.g. chicken, rice, tomato, garlic"></textarea>
         </div>
 
-        <h2 class="preferences-title">Tell us your preferences</h2>
+        <h2 class="preferences-title">Your Preferences</h2>
 
         <div class="preferences-form">
 
             <div>
                 <label>Budget</label>
-
                 <select name="maxBudget" class="form-control">
                     <option value="5">Under $5</option>
                     <option value="10">Under $10</option>
@@ -53,7 +38,6 @@
 
             <div>
                 <label>Servings</label>
-
                 <select name="servings" class="form-control">
                     <option value="1">1 Person</option>
                     <option value="2">2 People</option>
@@ -63,139 +47,74 @@
             </div>
 
             <div class="dropdown-checkbox">
-
-                <button type="button" class="dropdown-btn">
-                    Dietary Requirements ▼
-                </button>
-
+                <button type="button" class="dropdown-btn">Dietary Requirements ▾</button>
                 <div class="dropdown-content">
-
-                    <label>
-                        <input type="checkbox" name="dietary" value="Vegan">
-                        Vegan
-                    </label>
-
-                    <label>
-                        <input type="checkbox" name="dietary" value="Vegetarian">
-                        Vegetarian
-                    </label>
-
-                    <label>
-                        <input type="checkbox" name="dietary" value="Halal">
-                        Halal
-                    </label>
-
-                    <label>
-                        <input type="checkbox" name="dietary" value="Kosher">
-                        Kosher
-                    </label>
-
-                    <label>
-                        <input type="checkbox" name="dietary" value="Gluten Free">
-                        Gluten Free
-                    </label>
-
-                    <label>
-                        <input type="checkbox" name="dietary" value="Dairy Free">
-                        Dairy Free
-                    </label>
-
-                    <label>
-                        <input type="checkbox" name="dietary" value="Low Carb">
-                        Low Carb
-                    </label>
-
+                    <label><input type="checkbox" name="dietary" value="Vegan"> Vegan</label>
+                    <label><input type="checkbox" name="dietary" value="Vegetarian"> Vegetarian</label>
+                    <label><input type="checkbox" name="dietary" value="Halal"> Halal</label>
+                    <label><input type="checkbox" name="dietary" value="Kosher"> Kosher</label>
+                    <label><input type="checkbox" name="dietary" value="Gluten Free"> Gluten Free</label>
+                    <label><input type="checkbox" name="dietary" value="Dairy Free"> Dairy Free</label>
+                    <label><input type="checkbox" name="dietary" value="Low Carb"> Low Carb</label>
                 </div>
-
             </div>
 
             <div class="dropdown-checkbox">
-
-                <button type="button" class="dropdown-btn">
-                    Allergies ▼
-                </button>
-
+                <button type="button" class="dropdown-btn">Allergies ▾</button>
                 <div class="dropdown-content">
-
-                    <label>
-                        <input type="checkbox" name="allergies" value="Nuts">
-                        Nuts
-                    </label>
-
-                    <label>
-                        <input type="checkbox" name="allergies" value="Dairy">
-                        Dairy
-                    </label>
-
-                    <label>
-                        <input type="checkbox" name="allergies" value="Eggs">
-                        Eggs
-                    </label>
-
-                    <label>
-                        <input type="checkbox" name="allergies" value="Shellfish">
-                        Shellfish
-                    </label>
-
-                    <label>
-                        <input type="checkbox" name="allergies" value="Soy">
-                        Soy
-                    </label>
-
-                    <label>
-                        <input type="checkbox" name="allergies" value="Gluten">
-                        Gluten
-                    </label>
-
+                    <label><input type="checkbox" name="allergies" value="Nuts"> Nuts</label>
+                    <label><input type="checkbox" name="allergies" value="Dairy"> Dairy</label>
+                    <label><input type="checkbox" name="allergies" value="Eggs"> Eggs</label>
+                    <label><input type="checkbox" name="allergies" value="Shellfish"> Shellfish</label>
+                    <label><input type="checkbox" name="allergies" value="Soy"> Soy</label>
+                    <label><input type="checkbox" name="allergies" value="Gluten"> Gluten</label>
                 </div>
-
             </div>
 
             <div>
                 <label>Cooking Time</label>
-
                 <select name="maxTime" class="form-control">
                     <option value="15">Under 15 mins</option>
                     <option value="30">Under 30 mins</option>
-                    <option value="60">Under 60 mins</option>
+                    <option value="60" selected>Under 60 mins</option>
                 </select>
             </div>
 
             <div>
                 <label>Calorie Goal</label>
-
                 <select name="calorieGoal" class="form-control">
                     <option value="none">No goal</option>
-                    <option value="weightLoss">Weight Loss</option>
-                    <option value="maintenance">Maintenance</option>
-                    <option value="muscleGain">Muscle Gain</option>
+                    <option value="weightLoss">Weight Loss (&le;450 cal)</option>
+                    <option value="maintenance">Maintenance (&le;650 cal)</option>
+                    <option value="muscleGain">Muscle Gain (&ge;500 cal)</option>
                 </select>
             </div>
 
         </div>
 
-        <button type="submit" class="search-submit">
-            Generate Meals
-        </button>
+        <button type="submit" class="search-submit">Generate Meals</button>
 
     </form>
 
 </section>
 
 @section Scripts {
-
     <script>
-
-        document.querySelectorAll('.dropdown-btn').forEach(button => {
-
-            button.addEventListener('click', function () {
-
-                this.parentElement.classList.toggle('active');
-
+        document.querySelectorAll('.dropdown-btn').forEach(function (btn) {
+            btn.addEventListener('click', function (e) {
+                e.stopPropagation();
+                var parent = this.parentElement;
+                var isOpen = parent.classList.contains('active');
+                document.querySelectorAll('.dropdown-checkbox.active').forEach(function (el) {
+                    el.classList.remove('active');
+                });
+                if (!isOpen) parent.classList.add('active');
             });
-
         });
-
+        document.addEventListener('click', function () {
+            document.querySelectorAll('.dropdown-checkbox.active').forEach(function (el) {
+                el.classList.remove('active');
+            });
+        });
     </script>
-
 }

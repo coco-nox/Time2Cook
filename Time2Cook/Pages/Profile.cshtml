@@ -1,0 +1,101 @@
+@page
+@model Time2Cook.Pages.ProfileModel
+@{
+    ViewData["Title"] = "My Profile";
+}
+
+<section class="profile-page">
+
+    <div class="profile-layout">
+
+        <!-- Left: User card -->
+        <div class="profile-sidebar">
+            <div class="profile-avatar">@Model.Avatar</div>
+            <h2 class="profile-email">@Model.Email</h2>
+            @if (Model.JoinedAt.HasValue)
+            {
+                <p class="profile-joined">Member since @Model.JoinedAt.Value.ToString("MMMM yyyy")</p>
+            }
+
+            <div class="profile-stats">
+                <a asp-page="/SavedRecipes" class="profile-stat-card">
+                    <span class="profile-stat-number">@Model.SavedCount</span>
+                    <span class="profile-stat-label">Saved Recipes</span>
+                </a>
+            </div>
+
+            <div class="profile-quick-links">
+                <a asp-page="/SearchMeals" class="profile-action-btn">🔍 Search Meals</a>
+                <a asp-page="/SavedRecipes" class="profile-action-btn">❤️ Saved Recipes</a>
+                <form method="post" asp-page="/Logout">
+                    <button type="submit" class="profile-action-btn profile-action-btn--danger">⬅️ Logout</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Right: Settings -->
+        <div class="profile-main">
+
+            <div class="profile-section">
+                <h3 class="profile-section-title">Account Details</h3>
+                <div class="profile-detail-row">
+                    <span class="profile-detail-label">Email</span>
+                    <span class="profile-detail-value">@Model.Email</span>
+                </div>
+                <div class="profile-detail-row">
+                    <span class="profile-detail-label">Account Status</span>
+                    <span class="profile-detail-value profile-badge-active">Active</span>
+                </div>
+                @if (Model.JoinedAt.HasValue)
+                {
+                    <div class="profile-detail-row">
+                        <span class="profile-detail-label">Joined</span>
+                        <span class="profile-detail-value">@Model.JoinedAt.Value.ToString("dd MMMM yyyy")</span>
+                    </div>
+                }
+            </div>
+
+            <div class="profile-section">
+                <h3 class="profile-section-title">Change Password</h3>
+
+                @if (!string.IsNullOrEmpty(Model.SuccessMessage))
+                {
+                    <div class="profile-success">✅ @Model.SuccessMessage</div>
+                }
+                @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+                {
+                    <div class="profile-error">@Model.ErrorMessage</div>
+                }
+
+                <form method="post" asp-page-handler="ChangePassword" class="profile-form">
+                    <div class="auth-field">
+                        <label asp-for="Input.CurrentPassword">Current Password</label>
+                        <input asp-for="Input.CurrentPassword" type="password" class="form-control"
+                               placeholder="Your current password" autocomplete="current-password" />
+                        <span asp-validation-for="Input.CurrentPassword" class="auth-validation"></span>
+                    </div>
+                    <div class="auth-field">
+                        <label asp-for="Input.NewPassword">New Password</label>
+                        <input asp-for="Input.NewPassword" type="password" class="form-control"
+                               placeholder="At least 6 characters" autocomplete="new-password" />
+                        <span asp-validation-for="Input.NewPassword" class="auth-validation"></span>
+                    </div>
+                    <div class="auth-field">
+                        <label asp-for="Input.ConfirmNewPassword">Confirm New Password</label>
+                        <input asp-for="Input.ConfirmNewPassword" type="password" class="form-control"
+                               placeholder="Repeat new password" autocomplete="new-password" />
+                        <span asp-validation-for="Input.ConfirmNewPassword" class="auth-validation"></span>
+                    </div>
+                    <button type="submit" class="main-btn">Update Password</button>
+                </form>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

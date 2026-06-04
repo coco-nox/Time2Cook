@@ -2,6 +2,7 @@
 @model Time2Cook.RecipeResultsModel
 @{
     ViewData["Title"] = "Meal Results";
+    var fromSearch = Uri.EscapeDataString(Model.SearchQueryString);
 }
 
 <section class="results-page">
@@ -21,9 +22,9 @@
     @if (Model.Recipes.Count == 0)
     {
         <div class="empty-state">
-            <div style="font-size:72px;">🥗</div>
+            <div style="font-size:64px;">🥗</div>
             <h2>No meals found</h2>
-            <p>Try adjusting your ingredients, budget or dietary filters and search again.</p>
+            <p>Try adjusting your ingredients, budget or dietary filters.</p>
             <a asp-page="/SearchMeals" class="main-btn">Back to Search</a>
         </div>
     }
@@ -33,7 +34,7 @@
             @foreach (var recipe in Model.Recipes)
             {
                 <div class="recipe-card">
-                    <img src="@recipe.Image" alt="@recipe.Name" />
+                    <img src="@recipe.Image" alt="@recipe.Name" loading="lazy" />
                     <div class="recipe-content">
                         <h3>@recipe.Name</h3>
                         <div class="recipe-meta-tags">
@@ -44,7 +45,7 @@
                             <span>🔥 @recipe.Calories cal</span>
                             <span>⏱ @recipe.Time</span>
                         </div>
-                        <a href="/RecipeDetails?name=@Uri.EscapeDataString(recipe.Name)" class="recipe-btn">
+                        <a href="/RecipeDetails?name=@Uri.EscapeDataString(recipe.Name)&from=@fromSearch" class="recipe-btn">
                             View Recipe
                         </a>
                     </div>
@@ -52,7 +53,7 @@
             }
         </div>
 
-        <div style="text-align:center; margin-top:42px;">
+        <div style="text-align:center; margin-top:44px;">
             <a asp-page="/SearchMeals" class="outline-btn">Search Again</a>
         </div>
     }
