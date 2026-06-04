@@ -1,27 +1,60 @@
-﻿@page
+@page
 @model Time2Cook.RecipeResultsModel
-<div class="recipe-grid">
-    @foreach (var recipe in Model.Recipes)
+@{
+    ViewData["Title"] = "Meal Results";
+}
+
+<section class="results-page">
+
+    <div class="results-header">
+        <h1>Your Meal Suggestions</h1>
+        @if (!string.IsNullOrWhiteSpace(Model.Ingredients))
+        {
+            <p>Showing results for: <strong>@Model.Ingredients</strong> &mdash; @Model.Recipes.Count meal@(Model.Recipes.Count != 1 ? "s" : "") found</p>
+        }
+        else
+        {
+            <p>@Model.Recipes.Count meal@(Model.Recipes.Count != 1 ? "s" : "") match your filters</p>
+        }
+    </div>
+
+    @if (Model.Recipes.Count == 0)
     {
-        <div class="recipe-card">
-
-            <img src="@recipe.Image" alt="@recipe.Name" />
-
-            <div class="recipe-content">
-                <h3>@recipe.Name</h3>
-
-                <div class="recipe-info">
-                    <span>💰 @recipe.Cost</span>
-                    <span>🔥 @recipe.Calories Calories</span>
-                    <span>⏱ @recipe.Time</span>
-                </div>
-
-                <a href="/RecipeDetails?name=@recipe.Name" class="recipe-btn">
-                      View Recipe
-                   
-                </a>
-            </div>
-
+        <div class="empty-state">
+            <div style="font-size:72px;">🥗</div>
+            <h2>No meals found</h2>
+            <p>Try adjusting your ingredients, budget or dietary filters and search again.</p>
+            <a asp-page="/SearchMeals" class="main-btn">Back to Search</a>
         </div>
     }
-</div>
+    else
+    {
+        <div class="recipe-grid">
+            @foreach (var recipe in Model.Recipes)
+            {
+                <div class="recipe-card">
+                    <img src="@recipe.Image" alt="@recipe.Name" />
+                    <div class="recipe-content">
+                        <h3>@recipe.Name</h3>
+                        <div class="recipe-meta-tags">
+                            <span class="meta-tag">@recipe.DietType</span>
+                        </div>
+                        <div class="recipe-info">
+                            <span>💰 @recipe.Cost</span>
+                            <span>🔥 @recipe.Calories cal</span>
+                            <span>⏱ @recipe.Time</span>
+                        </div>
+                        <a href="/RecipeDetails?name=@Uri.EscapeDataString(recipe.Name)" class="recipe-btn">
+                            View Recipe
+                        </a>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <div style="text-align:center; margin-top:42px;">
+            <a asp-page="/SearchMeals" class="outline-btn">Search Again</a>
+        </div>
+    }
+
+</section>

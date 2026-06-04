@@ -1,57 +1,81 @@
-﻿@page
+@page
 @model Time2Cook.RecipeDetailsModel
 @{
-    ViewData["Title"] = "Recipe Details";
+    ViewData["Title"] = Model.Recipe?.Name ?? "Recipe Details";
 }
 
 @if (Model.Recipe != null)
 {
     <section class="details-page">
 
-        <a asp-page="/RecipeResults" class="back-link">
-            ← Back to Results
-        </a>
+        <a asp-page="/RecipeResults" class="back-link">← Back to Results</a>
+
+        @if (Model.JustSaved)
+        {
+            <div class="save-toast save-toast--saved">✅ Recipe saved to your collection!</div>
+        }
+        else if (Model.JustUnsaved)
+        {
+            <div class="save-toast save-toast--removed">Removed from saved recipes.</div>
+        }
 
         <div class="details-card">
 
-            <img src="@Model.Recipe.Image" alt="@Model.Recipe.Name" />
+            <div class="details-image-wrap">
+                <img src="@Model.Recipe.Image" alt="@Model.Recipe.Name" />
+                <div class="details-diet-badge">@Model.Recipe.DietType</div>
+            </div>
 
             <div class="details-content">
 
                 <h1>@Model.Recipe.Name</h1>
 
                 <div class="details-stats">
-                    <span>💰 @Model.Recipe.Cost</span>
-                    <span>🔥 @Model.Recipe.Calories Calories</span>
-                    <span>⏱ @Model.Recipe.Time</span>
+                    <span class="stat-pill">💰 @Model.Recipe.Cost</span>
+                    <span class="stat-pill">🔥 @Model.Recipe.Calories cal</span>
+                    <span class="stat-pill">⏱ @Model.Recipe.Time</span>
                 </div>
 
-                <h2>Diet Type</h2>
-                <p>@Model.Recipe.DietType</p>
-
-                <h2>Protein</h2>
-                <p>@Model.Recipe.Protein</p>
+                @if (Model.Recipe.Allergens != "None" && !string.IsNullOrWhiteSpace(Model.Recipe.Allergens))
+                {
+                    <div class="allergen-warning">
+                        ⚠️ Contains: @Model.Recipe.Allergens
+                    </div>
+                }
 
                 <h2>Ingredients</h2>
-
-                <ul>
+                <ul class="ingredients-list">
                     @foreach (var ingredient in Model.Recipe.IngredientsList)
                     {
                         <li>@ingredient</li>
                     }
                 </ul>
 
-                <h2>Allergens</h2>
-                <p>@Model.Recipe.Allergens</p>
-
                 <h2>Instructions</h2>
-
-                <ol>
+                <ol class="instructions-list">
                     @foreach (var step in Model.Recipe.Instructions)
                     {
                         <li>@step</li>
                     }
                 </ol>
+
+                <div class="details-actions">
+                    <form method="post" asp-page-handler="Save" asp-route-name="@Model.Recipe.Name">
+                        @if (User.Identity?.IsAuthenticated == true)
+                        {
+                            <button type="submit" class="save-btn @(Model.IsSaved ? "save-btn--saved" : "")">
+                                @(Model.IsSaved ? "❤️ Saved" : "🤍 Save Recipe")
+                            </button>
+                        }
+                        else
+                        {
+                            <a asp-page="/Login" asp-route-returnUrl="/RecipeDetails?name=@Uri.EscapeDataString(Model.Recipe.Name)" class="save-btn">
+                                🤍 Login to Save
+                            </a>
+                        }
+                    </form>
+                    <a asp-page="/SearchMeals" class="find-more-btn">Find More Recipes</a>
+                </div>
 
             </div>
 
@@ -61,5 +85,12 @@
 }
 else
 {
-    <h2>Recipe not found.</h2>
+    <section class="details-page">
+        <div class="not-found-box">
+            <div style="font-size:60px;">🍽️</div>
+            <h2>Recipe Not Found</h2>
+            <p>We couldn't find that recipe. It may have been removed or the link is incorrect.</p>
+            <a asp-page="/SearchMeals" class="main-btn">Search Recipes</a>
+        </div>
+    </section>
 }

@@ -1,4 +1,70 @@
-﻿@page
+@page
 @model Time2Cook.SavedRecipesModel
 @{
+    ViewData["Title"] = "Saved Recipes";
 }
+
+<section class="results-page">
+
+    <div class="results-header">
+        <h1>Saved Recipes</h1>
+        @if (Model.IsLoggedIn)
+        {
+            <p>Your personal recipe collection — @Model.Recipes.Count recipe@(Model.Recipes.Count != 1 ? "s" : "") saved.</p>
+        }
+    </div>
+
+    @if (!Model.IsLoggedIn)
+    {
+        <div class="auth-prompt">
+            <div style="font-size:56px; margin-bottom:16px;">🔐</div>
+            <h2>Log in to view your saved recipes</h2>
+            <p>Create an account to save and organise your favourite meals.</p>
+            <div class="auth-prompt-btns">
+                <a asp-page="/Login" class="main-btn">Log In</a>
+                <a asp-page="/Register" class="outline-btn">Create Account</a>
+            </div>
+        </div>
+    }
+    else if (Model.Recipes.Count == 0)
+    {
+        <div class="empty-state">
+            <div style="font-size:72px;">📭</div>
+            <h2>No saved recipes yet</h2>
+            <p>Browse meals and tap "Save Recipe" to add them here.</p>
+            <a asp-page="/SearchMeals" class="main-btn">Find Recipes</a>
+        </div>
+    }
+    else
+    {
+        <div class="saved-actions-bar">
+            <form method="post" asp-page-handler="Clear" onsubmit="return confirm('Clear all saved recipes?')">
+                <button type="submit" class="clear-btn">Clear All</button>
+            </form>
+        </div>
+
+        <div class="recipe-grid">
+            @foreach (var recipe in Model.Recipes)
+            {
+                <div class="recipe-card">
+                    <img src="@recipe.Image" alt="@recipe.Name" />
+                    <div class="recipe-content">
+                        <h3>@recipe.Name</h3>
+                        <div class="recipe-info">
+                            <span>💰 @recipe.Cost</span>
+                            <span>🔥 @recipe.Calories cal</span>
+                            <span>⏱ @recipe.Time</span>
+                        </div>
+                        <div class="card-actions">
+                            <a href="/RecipeDetails?name=@Uri.EscapeDataString(recipe.Name)" class="recipe-btn">View Recipe</a>
+                            <form method="post" asp-page-handler="Remove" asp-route-name="@recipe.Name" style="display:inline;">
+                                <button type="submit" class="remove-btn" title="Remove from saved">✕</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+
+</section>

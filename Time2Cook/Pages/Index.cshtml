@@ -1,89 +1,83 @@
-﻿@page
+@page
 @model IndexModel
 @{
     ViewData["Title"] = "Time2Cook";
 }
 
-<section class="new-home">
-
-    <div class="home-left">
-        <p class="small-title">Time2Cook</p>
-
-        <h1>
+<section class="hero-section">
+    <div class="hero-content">
+        <p class="hero-eyebrow">Time2Cook</p>
+        <h1 class="hero-heading">
             Take the Stress<br />
-            out of meals.<br />
-            <span>Eat Better.</span>
+            out of Meals.<br />
+            <span class="hero-accent">Eat Better.</span>
         </h1>
-
-        <p class="home-text">
-            Turn leftovers into affordable meals that match your budget, time and preferences.
+        <p class="hero-text">
+            Turn leftovers into affordable, delicious meals that match your budget,
+            time and dietary preferences — in minutes.
         </p>
-
-        <a asp-page="/SearchMeals" class="home-btn">Get Started</a>
+        <div class="hero-btns">
+            <a asp-page="/SearchMeals" class="main-btn">Get Started &rarr;</a>
+            @if (User.Identity?.IsAuthenticated != true)
+            {
+                <a asp-page="/Register" class="outline-btn">Create Free Account</a>
+            }
+        </div>
     </div>
-
-    <div class="home-right">
-        <img src="/images/Spiced chicken rice bowl.jpg" alt="Time2Cook meal preview" />
-    </div>
-
 </section>
 
-<section class="start-section">
-
-    <h2>How would you like to start?</h2>
-
-    <div class="start-grid">
-        <a asp-page="/SearchMeals" class="start-card">
-            <div>📷</div>
+<section class="how-section">
+    <h2>How It Works</h2>
+    <div class="how-grid">
+        <a asp-page="/SearchMeals" class="how-card">
+            <div class="how-icon">📷</div>
             <h3>Upload</h3>
-            <p>Upload a photo of leftovers.</p>
+            <p>Photo your fridge or pantry to get started.</p>
         </a>
-
-        <a asp-page="/SearchMeals" class="start-card">
-            <div>✏️</div>
-            <h3>Enter</h3>
-            <p>Type your ingredients manually.</p>
+        <a asp-page="/SearchMeals" class="how-card">
+            <div class="how-icon">✏️</div>
+            <h3>Enter Ingredients</h3>
+            <p>Type what you have on hand.</p>
         </a>
-
-        <a asp-page="/SearchMeals" class="start-card">
-            <div>💰</div>
-            <h3>Budget</h3>
-            <p>Choose how much you want to spend.</p>
+        <a asp-page="/SearchMeals" class="how-card">
+            <div class="how-icon">💰</div>
+            <h3>Set Your Budget</h3>
+            <p>Choose how much you want to spend per meal.</p>
         </a>
-
-        <a asp-page="/SearchMeals" class="start-card">
-            <div>⚙️</div>
+        <a asp-page="/SearchMeals" class="how-card">
+            <div class="how-icon">⚙️</div>
             <h3>Preferences</h3>
-            <p>Select diet, allergies and calories.</p>
+            <p>Filter by diet, allergies and calorie goals.</p>
         </a>
     </div>
-
 </section>
 
 <section class="popular-section">
-
     <h2>Popular Recipes</h2>
-
     <div class="popular-grid">
-
-        <div class="popular-card">
-            <img src="/images/Spiced chicken rice bowl.jpg" />
-            <h3>Chicken Rice Bowl</h3>
-            <p>$4.50 • 20 mins</p>
-        </div>
-
-        <div class="popular-card">
-            <img src="/images/sesame-crusted-tuna-rice-bowls.jpg" />
-            <h3>Tuna Rice Bowl</h3>
-            <p>$3.50 • 10 mins</p>
-        </div>
-
-        <div class="popular-card">
-            <img src="/images/Vietnamese-Caramelized-Minced-Beef-Rice-Bowls.jpg" />
-            <h3>Beef Rice Bowl</h3>
-            <p>$5.20 • 25 mins</p>
-        </div>
-
+        <a href="/RecipeDetails?name=Chicken+Rice+Bowl" class="popular-card">
+            <img src="/Images/Spiced chicken rice bowl.jpg" alt="Chicken Rice Bowl" />
+            <div class="popular-card-body">
+                <h3>Chicken Rice Bowl</h3>
+                <p>$4.50 &bull; 20 mins &bull; 520 cal</p>
+            </div>
+        </a>
+        <a href="/RecipeDetails?name=Sesame+Tuna+Bowl" class="popular-card">
+            <img src="/Images/sesame-crusted-tuna-rice-bowls.jpg" alt="Sesame Tuna Bowl" />
+            <div class="popular-card-body">
+                <h3>Sesame Tuna Bowl</h3>
+                <p>$6.20 &bull; 20 mins &bull; 520 cal</p>
+            </div>
+        </a>
+        <a href="/RecipeDetails?name=Beef+Rice+Bowl" class="popular-card">
+            <img src="/Images/Vietnamese-Caramelized-Minced-Beef-Rice-Bowls.jpg" alt="Beef Rice Bowl" />
+            <div class="popular-card-body">
+                <h3>Beef Rice Bowl</h3>
+                <p>$5.20 &bull; 25 mins &bull; 610 cal</p>
+            </div>
+        </a>
     </div>
-
+    <div style="text-align:center; margin-top:36px;">
+        <a asp-page="/SearchMeals" class="outline-btn">Browse All Recipes</a>
+    </div>
 </section>

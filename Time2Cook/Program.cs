@@ -1,26 +1,40 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 builder.Services.AddRazorPages();
+
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(opts =>
+    {
+        opts.LoginPath = "/Login";
+        opts.AccessDeniedPath = "/Login";
+        opts.Cookie.Name = "T2CAuth";
+        opts.ExpireTimeSpan = TimeSpan.FromDays(7);
+        opts.SlidingExpiration = true;
+    });
+
+builder.Services.AddSession(opts =>
+{
+    opts.IdleTimeout = TimeSpan.FromHours(4);
+    opts.Cookie.HttpOnly = true;
+    opts.Cookie.IsEssential = true;
+});
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
 app.UseHttpsRedirection();
-
 app.UseRouting();
-
+app.UseSession();
+app.UseAuthentication();
 app.UseAuthorization();
-
 app.MapStaticAssets();
-app.MapRazorPages()
-   .WithStaticAssets();
+app.MapRazorPages().WithStaticAssets();
 
 app.Run();

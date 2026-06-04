@@ -39,7 +39,7 @@ namespace Time2Cook.Models
                     "Add chicken, cucumber and lettuce.",
                     "Serve warm."
                 },
-                Image = "/images/Spiced chicken rice bowl.jpg"
+                Image = "/Images/Spiced chicken rice bowl.jpg"
             },
 
             new Recipe
@@ -73,7 +73,7 @@ namespace Time2Cook.Models
                     "Add soy sauce and stir everything together.",
                     "Serve the stir fry with rice."
                 },
-                Image = "/images/Chicken Stir Fry.jpg"
+                Image = "/Images/Chicken Stir Fry.jpg"
             },
 
             new Recipe
@@ -107,7 +107,7 @@ namespace Time2Cook.Models
                     "Slice the chicken and place it on top.",
                     "Serve with a light dressing or lemon juice."
                 },
-                Image = "/images/Grilled Chicken Salad.jpg"
+                Image = "/Images/Grilled Chicken Salad.jpg"
             },
 
             new Recipe
@@ -140,7 +140,7 @@ namespace Time2Cook.Models
                     "Add carrot and cucumber on top.",
                     "Fold the lettuce and serve."
                 },
-                Image = "/images/Thai Chicken Lettuce Wraps.jpg"
+                Image = "/Images/Thai Chicken Lettuce Wraps.jpg"
             },
 
             new Recipe
@@ -174,7 +174,7 @@ namespace Time2Cook.Models
                     "Add the beef mixture on top.",
                     "Serve with avocado or salsa."
                 },
-                Image = "/images/Healthy Burrito Bowls.jpg"
+                Image = "/Images/Healthy Burrito Bowls.jpg"
             },
 
             new Recipe
@@ -207,7 +207,7 @@ namespace Time2Cook.Models
                     "Add beef and vegetables on top.",
                     "Serve hot."
                 },
-                Image = "/images/Vietnamese-Caramelized-Minced-Beef-Rice-Bowls.jpg"
+                Image = "/Images/Vietnamese-Caramelized-Minced-Beef-Rice-Bowls.jpg"
             },
 
             new Recipe
@@ -240,7 +240,7 @@ namespace Time2Cook.Models
                     "Add carrot and cucumber on top.",
                     "Serve immediately."
                 },
-                Image = "/images/vietnamese-beef-lettuce-cups.jpg"
+                Image = "/Images/vietnamese-beef-lettuce-cups.jpg"
             },
 
             new Recipe
@@ -274,7 +274,7 @@ namespace Time2Cook.Models
                     "Place rice into a bowl.",
                     "Add the beef and tomato mixture on top."
                 },
-                Image = "/images/Vietnamese-Caramelized-Minced-Beef-Rice-Bowls.jpg"
+                Image = "/Images/Vietnamese-Caramelized-Minced-Beef-Rice-Bowls.jpg"
             },
 
             new Recipe
@@ -307,7 +307,7 @@ namespace Time2Cook.Models
                     "Season with salt and pepper.",
                     "Serve immediately."
                 },
-                Image = "/images/sesame-crusted-tuna-rice-bowls.jpg"
+                Image = "/Images/sesame-crusted-tuna-rice-bowls.jpg"
             },
 
             new Recipe
@@ -339,7 +339,7 @@ namespace Time2Cook.Models
                     "Drizzle with soy sauce.",
                     "Serve fresh."
                 },
-                Image = "/images/Tuna-Mornay_6.jpg"
+                Image = "/Images/Tuna-Mornay_6.jpg"
             },
 
             new Recipe
@@ -372,7 +372,7 @@ namespace Time2Cook.Models
                     "Place salmon on top.",
                     "Serve with dressing."
                 },
-                Image = "/images/sesame-crusted-tuna-rice-bowls.jpg"
+                Image = "/Images/sesame-crusted-tuna-rice-bowls.jpg"
             },
 
             new Recipe
@@ -405,7 +405,7 @@ namespace Time2Cook.Models
                     "Drizzle with lemon juice.",
                     "Serve immediately."
                 },
-                Image = "/images/sesame-crusted-tuna-rice-bowls.jpg"
+                Image = "/Images/sesame-crusted-tuna-rice-bowls.jpg"
             },
 
             new Recipe
@@ -438,7 +438,7 @@ namespace Time2Cook.Models
                     "Top with tuna and cucumber.",
                     "Drizzle with soy sauce."
                 },
-                Image = "/images/sesame-crusted-tuna-rice-bowls.jpg"
+                Image = "/Images/sesame-crusted-tuna-rice-bowls.jpg"
             },
 
             new Recipe
@@ -471,7 +471,7 @@ namespace Time2Cook.Models
                     "Add soy sauce and stir.",
                     "Serve hot."
                 },
-                Image = "/images/Vegetable Fried Rice (no egg).jpg"
+                Image = "/Images/Vegetable Fried Rice (no egg).jpg"
             },
 
             new Recipe
@@ -504,7 +504,7 @@ namespace Time2Cook.Models
                     "Cook for another minute.",
                     "Serve warm."
                 },
-                Image = "/images/Veggie Stuffed Omelet.jpg"
+                Image = "/Images/Veggie Stuffed Omelet.jpg"
             },
 
             new Recipe
@@ -536,7 +536,7 @@ namespace Time2Cook.Models
                     "Season to taste.",
                     "Serve immediately."
                 },
-                Image = "/images/avocado-toast-with-egg.jpg"
+                Image = "/Images/avocado-toast-with-egg.jpg"
             },
 
             new Recipe
@@ -568,7 +568,7 @@ namespace Time2Cook.Models
                     "Fold tacos.",
                     "Serve immediately."
                 },
-                Image = "/images/black-bean-tacos-.jpg"
+                Image = "/Images/black-bean-tacos-.jpg"
             },
 
             new Recipe
@@ -601,7 +601,7 @@ namespace Time2Cook.Models
                     "Simmer for 25 minutes.",
                     "Serve hot."
                 },
-                Image = "/images/buffalo-chickpea-bowl.jpg"
+                Image = "/Images/buffalo-chickpea-bowl.jpg"
             },
 
             new Recipe
@@ -633,7 +633,7 @@ namespace Time2Cook.Models
                     "Add lettuce and chickpeas.",
                     "Serve immediately."
                 },
-                Image = "/images/buffalo-chickpea-bowl.jpg"
+                Image = "/Images/buffalo-chickpea-bowl.jpg"
             },
 
             new Recipe
@@ -665,7 +665,7 @@ namespace Time2Cook.Models
                     "Top with avocado.",
                     "Serve fresh."
                 },
-                Image = "/images/Healthy Burrito Bowls.jpg"
+                Image = "/Images/Healthy Burrito Bowls.jpg"
             }
             };
         }
